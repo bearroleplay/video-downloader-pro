@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "videodownloader"
+version = "1.0.0"
+authors = [
+    {name = "Your Name", email = "your.email@example.com"},
+]
+description = "Универсальный загрузчик видео с YouTube, RuTube, VK и OK"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+]
+
+dependencies = [
+    "yt-dlp>=2023.11.16",
+]
+
+[project.optional-dependencies]
+gui = ["PyQt5>=5.15.0"]
+notifications = ["win10toast>=0.9"]
+clipboard = ["pyperclip>=1.8.2"]
+dev = ["pytest>=7.0", "black>=23.0", "flake8>=6.0", "mypy>=1.0"]
+
+[project.urls]
+Homepage = "https://github.com/bearroleplay/video-downloader"
+BugTracker = "https://github.com/bearroleplay/video-downloader/issues"
+Source = "https://github.com/bearroleplay/video-downloader"
+
+[project.scripts]
+videodownloader = "src.video_downloader:main"
+
+[tool.black]
+line-length = 127
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+line_length = 127
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --cov=src --cov-report=term-missing"
